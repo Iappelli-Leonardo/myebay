@@ -33,28 +33,28 @@ public class AnnuncioDAOImpl implements AnnuncioDAO{
 	}
 
 	@Override
-	public void update(Annuncio filmInstance) throws Exception {
-		if (filmInstance == null) {
+	public void update(Annuncio annuncioInstance) throws Exception {
+		if (annuncioInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
-		filmInstance = entityManager.merge(filmInstance);
+		annuncioInstance = entityManager.merge(annuncioInstance);
 
 	}
 
 	@Override
-	public void insert(Annuncio filmInstance) throws Exception {
-		if (filmInstance == null) {
+	public void insert(Annuncio annuncioInstance) throws Exception {
+		if (annuncioInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
-		entityManager.persist(filmInstance);
+		entityManager.persist(annuncioInstance);
 	}
 
 	@Override
-	public void delete(Annuncio filmInstance) throws Exception {
-		if (filmInstance == null) {
+	public void delete(Annuncio annuncioInstance) throws Exception {
+		if (annuncioInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
-		entityManager.remove(entityManager.merge(filmInstance));
+		entityManager.remove(entityManager.merge(annuncioInstance));
 
 	}
 

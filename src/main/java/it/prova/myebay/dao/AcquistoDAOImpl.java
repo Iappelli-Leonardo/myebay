@@ -34,28 +34,28 @@ public class AcquistoDAOImpl implements AcquistoDAO{
 	}
 
 	@Override
-	public void update(Acquisto filmInstance) throws Exception {
-		if (filmInstance == null) {
+	public void update(Acquisto acquistoInstance) throws Exception {
+		if (acquistoInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
-		filmInstance = entityManager.merge(filmInstance);
+		acquistoInstance = entityManager.merge(acquistoInstance);
 
 	}
 
 	@Override
-	public void insert(Acquisto filmInstance) throws Exception {
-		if (filmInstance == null) {
+	public void insert(Acquisto acquistoInstance) throws Exception {
+		if (acquistoInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
-		entityManager.persist(filmInstance);
+		entityManager.persist(acquistoInstance);
 	}
 
 	@Override
-	public void delete(Acquisto filmInstance) throws Exception {
-		if (filmInstance == null) {
+	public void delete(Acquisto acquistoInstance) throws Exception {
+		if (acquistoInstance == null) {
 			throw new Exception("Problema valore in input");
 		}
-		entityManager.remove(entityManager.merge(filmInstance));
+		entityManager.remove(entityManager.merge(acquistoInstance));
 
 	}
 

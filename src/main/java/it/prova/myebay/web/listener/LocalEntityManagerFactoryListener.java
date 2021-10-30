@@ -13,6 +13,9 @@ import javax.servlet.annotation.WebListener;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
+import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.service.RuoloService;
+import it.prova.myebay.service.UtenteService;
 
 @WebListener
 public class LocalEntityManagerFactoryListener implements ServletContextListener {
@@ -27,7 +30,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 
 	public void contextInitialized(ServletContextEvent sce) {
 		try {
-			entityManagerFactory = Persistence.createEntityManagerFactory("raccoltafilm_unit");
+			entityManagerFactory = Persistence.createEntityManagerFactory("myebay_unit");
 			// questa chiamata viene fatta qui per semplicità ma in genere è meglio trovare
 			// altri modi per fare init
 			initAdminUserAndRuoli();
@@ -76,7 +79,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 		}
 
 		if (utenteServiceInstance.findByUsernameAndPassword("admin", "admin") == null) {
-			Utente admin = new Utente("admin", "admin", "Mario", "Rossi", new Date());
+			Utente admin = new Utente("admin", "admin", "Peppe", "Rossi", new Date());
 			admin.setStato(StatoUtente.ATTIVO);
 			utenteServiceInstance.inserisciNuovo(admin);
 			utenteServiceInstance.aggiungiRuolo(admin,
@@ -84,7 +87,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 		}
 		
 		if (utenteServiceInstance.findByUsernameAndPassword("visitor", "123") == null) {
-			Utente admin = new Utente("visitor", "123", "Francesco", "Totti", new Date());
+			Utente admin = new Utente("visitor", "123", "Leonardo", "Iappelli", new Date());
 			admin.setStato(StatoUtente.ATTIVO);
 			utenteServiceInstance.inserisciNuovo(admin);
 			utenteServiceInstance.aggiungiRuolo(admin,
