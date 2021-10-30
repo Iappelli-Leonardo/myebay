@@ -115,6 +115,11 @@ public class UtenteDAOImpl implements UtenteDAO {
 			whereClauses.add("u.dateCreated >= :dateCreated ");
 			paramaterMap.put("dateCreated", example.getDateCreated());
 		}
+		
+		if (example.getCreditoResiduo() != null) {
+			whereClauses.add("u.creditoResiduo >= :creditoResiduo ");
+			paramaterMap.put("creditoResiduo", example.getCreditoResiduo());
+		}
 
 		queryBuilder.append(!whereClauses.isEmpty() ? " and " : "");
 		queryBuilder.append(StringUtils.join(whereClauses, " and "));

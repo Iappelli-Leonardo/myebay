@@ -35,7 +35,7 @@ public class Utente {
 	@Column(name = "dateCreated")
 	private Date dateCreated;
 	@Column(name = "creditoResiduo")
-	private String creditoResiduo;
+	private Integer creditoResiduo;
 
 	// se non uso questa annotation viene gestito come un intero
 	@Enumerated(EnumType.STRING)
@@ -54,7 +54,7 @@ public class Utente {
 		this.password = password;
 	}
 
-	public Utente(String username, String nome, String password, String cognome, Set<Ruolo> ruoli, String creditoResiduo) {
+	public Utente(String username, String nome, String password, String cognome, Set<Ruolo> ruoli, Integer creditoResiduo) {
 		this.username = username;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -63,14 +63,14 @@ public class Utente {
 		this.creditoResiduo = creditoResiduo;
 	}
 
-	public Utente(String username, String password, String nome, String cognome, String creditoResiduo) {
+	public Utente(String username, String password, String nome, String cognome, Integer creditoResiduo) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.creditoResiduo = creditoResiduo;
 	}
-	public Utente(String username, String password, String nome, String cognome, Date dateCreated, String creditoResiduo) {
+	public Utente(String username, String password, String nome, String cognome, Date dateCreated, Integer creditoResiduo) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
@@ -79,8 +79,9 @@ public class Utente {
 		this.creditoResiduo = creditoResiduo;
 	}
 	
-	public Utente(String username, String nome, String cognome, Date dateCreated) {
+	public Utente(String username, String password,String nome, String cognome, Date dateCreated) {
 		this.username = username;
+		this.password = password;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dateCreated = dateCreated;
@@ -149,6 +150,14 @@ public class Utente {
 
 	public void setStato(StatoUtente stato) {
 		this.stato = stato;
+	}
+	
+	public Integer getCreditoResiduo() {
+		return creditoResiduo;
+	}
+
+	public void setCreditoResiduo(Integer creditoResiduo) {
+		this.creditoResiduo = creditoResiduo;
 	}
 
 	public boolean isAdmin() {

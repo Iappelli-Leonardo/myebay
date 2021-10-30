@@ -29,7 +29,7 @@ public class Annuncio {
 	@Column(name = "testoAnnuncio")
 	private String testoAnnuncio;
 	@Column(name = "prezzo")
-	private int prezzo;
+	private Integer prezzo;
 	@Column(name = "data")
 	private Date data;
 	@Column(name = "aperto")
@@ -48,7 +48,7 @@ public class Annuncio {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Annuncio(Long id, String testoAnnuncio, int prezzo, Date data, boolean aperto,
+	public Annuncio(Long id, String testoAnnuncio, Integer prezzo, Date data, boolean aperto,
 			Utente utenteIserimento) {
 		super();
 		this.id = id;
@@ -59,7 +59,7 @@ public class Annuncio {
 		this.utenteIserimento = utenteIserimento;
 	}
 	
-	public Annuncio(String testoAnnuncio, int prezzo, Date data, boolean aperto,
+	public Annuncio(String testoAnnuncio, Integer prezzo, Date data, boolean aperto,
 			Utente utenteIserimento) {
 		super();
 		this.testoAnnuncio = testoAnnuncio;
@@ -69,7 +69,7 @@ public class Annuncio {
 		this.utenteIserimento = utenteIserimento;
 	}
 	
-	public Annuncio(String testoAnnuncio, int prezzo, Date data, boolean aperto) {
+	public Annuncio(String testoAnnuncio, Integer prezzo, Date data, boolean aperto) {
 		super();
 		this.testoAnnuncio = testoAnnuncio;
 		this.prezzo = prezzo;
@@ -93,11 +93,11 @@ public class Annuncio {
 		this.testoAnnuncio = testoAnnuncio;
 	}
 
-	public int getPrezzo() {
+	public Integer getPrezzo() {
 		return prezzo;
 	}
 
-	public void setPrezzo(int prezzo) {
+	public void setPrezzo(Integer prezzo) {
 		this.prezzo = prezzo;
 	}
 

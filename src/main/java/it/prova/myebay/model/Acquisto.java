@@ -25,7 +25,7 @@ public class Acquisto {
 	@Column(name = "data")
 	private Date data;
 	@Column(name = "prezzo")
-	private int prezzo;
+	private Integer prezzo;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "utente_id",nullable = false)
@@ -36,7 +36,7 @@ public class Acquisto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Acquisto(Long id, String descrizione, Date data, int prezzo, Utente utenteAcquirente) {
+	public Acquisto(Long id, String descrizione, Date data, Integer prezzo, Utente utenteAcquirente) {
 		super();
 		this.id = id;
 		this.descrizione = descrizione;
@@ -45,7 +45,7 @@ public class Acquisto {
 		this.utenteAcquirente = utenteAcquirente;
 	}
 
-	public Acquisto(String descrizione, Date data, int prezzo, Utente utenteAcquirente) {
+	public Acquisto(String descrizione, Date data, Integer prezzo, Utente utenteAcquirente) {
 		super();
 		this.descrizione = descrizione;
 		this.data = data;
@@ -53,7 +53,7 @@ public class Acquisto {
 		this.utenteAcquirente = utenteAcquirente;
 	}
 
-	public Acquisto(String descrizione, Date data, int prezzo) {
+	public Acquisto(String descrizione, Date data, Integer prezzo) {
 		super();
 		this.descrizione = descrizione;
 		this.data = data;
@@ -84,11 +84,11 @@ public class Acquisto {
 		this.data = data;
 	}
 
-	public int getPrezzo() {
+	public Integer getPrezzo() {
 		return prezzo;
 	}
 
-	public void setPrezzo(int prezzo) {
+	public void setPrezzo(Integer prezzo) {
 		this.prezzo = prezzo;
 	}
 
