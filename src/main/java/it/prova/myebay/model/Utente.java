@@ -48,6 +48,33 @@ public class Utente {
 	public Utente() {
 	}
 
+	public Utente(Long id, String username, String password, String nome, String cognome, Date dateCreated,
+			Integer creditoResiduo, StatoUtente stato, Set<Ruolo> ruoli) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dateCreated = dateCreated;
+		this.creditoResiduo = creditoResiduo;
+		this.stato = stato;
+		this.ruoli = ruoli;
+	}
+	public Utente(Long id, String username, String password, String nome, String cognome) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+	}
+
+	public Utente(Long id) {
+		super();
+		this.id = id;
+	}
+	
 	public Utente(String username, String password) {
 		super();
 		this.username = username;
@@ -63,12 +90,11 @@ public class Utente {
 		this.creditoResiduo = creditoResiduo;
 	}
 
-	public Utente(String username, String password, String nome, String cognome, Integer creditoResiduo) {
+	public Utente(String username, String password, String nome, String cognome) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
 		this.cognome = cognome;
-		this.creditoResiduo = creditoResiduo;
 	}
 	public Utente(String username, String password, String nome, String cognome, Date dateCreated, Integer creditoResiduo) {
 		this.username = username;
@@ -82,6 +108,12 @@ public class Utente {
 	public Utente(String username, String password,String nome, String cognome, Date dateCreated) {
 		this.username = username;
 		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dateCreated = dateCreated;
+	}
+	public Utente(String username,String nome, String cognome, Date dateCreated) {
+		this.username = username;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dateCreated = dateCreated;
@@ -163,6 +195,23 @@ public class Utente {
 	public boolean isAdmin() {
 		for (Ruolo ruoloItem : ruoli) {
 			if (ruoloItem.getCodice().equals(Ruolo.ROLE_ADMIN))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean isUser() {
+		for (Ruolo ruoloItem : ruoli) {
+			if (ruoloItem.getCodice().equals(Ruolo.ROLE_CLASSIC_USER))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean isLogged() {
+		for (Ruolo ruoloItem : ruoli) {
+			if (ruoloItem.getCodice().equals(Ruolo.ROLE_CLASSIC_USER)||
+					ruoloItem.getCodice().equals(Ruolo.ROLE_ADMIN))
 				return true;
 		}
 		return false;

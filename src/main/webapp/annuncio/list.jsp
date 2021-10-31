@@ -30,33 +30,31 @@
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
 		  
-		  
-		  
 		  		<div class='card'>
 				    <div class='card-header'>
 				        <h5>Lista dei risultati</h5> 
 				    </div>
+				   
 				    <div class='card-body'>
-				    	<a class="btn btn-primary " href="PrepareInsertFilmServlet">Add New</a>
-				    
+				     <c:if test="${userInfo.isLogged()}">
+				    	<a class="btn btn-primary " href="PrepareInsertAnnuncioServlet">Add New</a>
+				     </c:if>
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >
 				                <thead>
 				                    <tr>
-			                         	<th>Titolo</th>
-				                        <th>Genere</th>
+			                         	<th>Descrizione</th>
+				                        <th>Prezzo</th>
 				                        <th>Data Pubblicazione</th>
-				                        <th>Durata (min.)</th>
 				                        <th>Azioni</th>
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                	<c:forEach items="${film_list_attribute }" var="filmItem">
+				                	<c:forEach items="${annuncio_list_attribute }" var="annuncioItem">
 										<tr>
-											<td>${filmItem.titolo }</td>
-											<td>${filmItem.genere }</td>
-											<td><fmt:formatDate type = "date" value = "${filmItem.dataPubblicazione }" /></td>
-											<td>${filmItem.minutiDurata }</td>
+											<td>${annuncioItem.descrizione }</td>
+											<td>${annuncioItem.prezzo }</td>
+											<td><fmt:formatDate type = "date" value = "${annuncioItem.data }" /></td>
 											<td>
 												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaFilmServlet?idFilm=${filmItem.id }">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateFilmServlet?idFilm=${filmItem.id }">Edit</a>

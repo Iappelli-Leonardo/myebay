@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse" id="navbarsExample07">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/index.jsp">Home</a>
+            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/PrepareSearchAnnuncioServlet">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -26,19 +26,44 @@
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertRegistaServlet">Inserisci Regista</a></li>
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareSearchFilmServlet">Ricerca Film</a></li>
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertFilmServlet">Inserisci Film</a></li>
-              
-              <c:if test="${userInfo.isAdmin()}">
+            </ul> 
+          </li> 
+          
+             <c:if test="${userInfo.isUser()}"> 
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Gestione acquisti</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown07"> 
+            
+              	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertAnnuncioServlet">Crea annuncio</a></li>
+              	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertUtenteServlet">Gestione acquisto</a></li>
+            </ul>
+                </li> 
+                </c:if>
+          
+            <c:if test="${userInfo.isAdmin()}"> 
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Gestione utente</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown07"> 
+            
               	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/PrepareSearchUtenteServlet">Ricerca Utenti</a></li>
               	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/PrepareInsertUtenteServlet">Inserisci Utenti</a></li>
-              </c:if>
-            </ul> 
-          </li>   
+            </ul>
+                </li> 
+                </c:if>
         </ul>
       </div>
+      <c:if test="${userInfo.isLogged()}">
       <div class="col-md-3 text-end">
         <p class="navbar-text">Utente: ${userInfo.username }(${userInfo.nome } ${userInfo.cognome })
-     <a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></p>
+    	 <a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></p>
       </div>
+      </c:if>
+        <c:if test="${!userInfo.isLogged()}">
+      <div class="col-md-3 text-end">
+        <p class="navbar-text">
+    	 <a href="${pageContext.request.contextPath}/login.jsp">Login</a></p>
+      </div>
+       </c:if>
     </div>
   </nav>
 

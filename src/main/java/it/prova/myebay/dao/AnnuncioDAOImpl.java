@@ -60,7 +60,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO{
 
 	@Override
 	public Optional<Annuncio> findOneEager(Long id) throws Exception {
-		return entityManager.createQuery("from Annuncio a left join fetch a.utenteIserimento where a.id=:idAnnuncio", Annuncio.class)
+		return entityManager.createQuery("from Annuncio a left join fetch a.categorie where a.id=:idAnnuncio", Annuncio.class)
 				.setParameter("idAnnuncio", id).getResultList().stream().findFirst();
 	}
 
@@ -72,17 +72,17 @@ public class AnnuncioDAOImpl implements AnnuncioDAO{
 		StringBuilder queryBuilder = new StringBuilder("select a from Annuncio a where a.id = a.id ");
 
 		if (StringUtils.isNotEmpty(example.getTestoAnnuncio())) {
-			whereClauses.add(" a.descrizione  like :descrizione ");
-			paramaterMap.put("titolo", "%" + example.getTestoAnnuncio() + "%");
+			whereClauses.add(" a.testoAnnuncio  like :testoAnnuncio ");
+			paramaterMap.put("testoAnnuncio", "%" + example.getTestoAnnuncio() + "%");
 		}
 		
 		if (example.getPrezzo() != null) {
 			whereClauses.add(" a.prezzo > :prezzo ");
 			paramaterMap.put("prezzo", example.getPrezzo());
 		}
-		if (example.getUtenteIserimento() != null) {
+		if (example.getUtenteInserimento() != null) {
 			whereClauses.add(" a.utenteIserimento.id =:utenteIserimento ");
-			paramaterMap.put("utenteIserimento", example.getUtenteIserimento().getId());
+			paramaterMap.put("utenteIserimento", example.getUtenteInserimento().getId());
 		}
 		if (example.getData() != null) {
 			whereClauses.add("a.data >= :data ");

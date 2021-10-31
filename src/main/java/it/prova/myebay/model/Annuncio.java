@@ -37,7 +37,7 @@ public class Annuncio {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "utente_id",nullable = false)
-	private Utente utenteIserimento;
+	private Utente utenteInserimento;
 	
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinTable(name = "annuncio_categoria", joinColumns = @JoinColumn(name = "annuncio_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "ID"))
@@ -48,6 +48,37 @@ public class Annuncio {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	public Annuncio(Long id, String testoAnnuncio, Integer prezzo, Date data, boolean aperto, Utente utenteIserimento,
+			Set<Categoria> categorie) {
+		super();
+		this.id = id;
+		this.testoAnnuncio = testoAnnuncio;
+		this.prezzo = prezzo;
+		this.data = data;
+		this.aperto = aperto;
+		this.utenteInserimento = utenteIserimento;
+		this.categorie = categorie;
+	}
+	
+	public Annuncio(String testoAnnuncio, Integer prezzo,
+			Date data) {
+		super();
+		this.testoAnnuncio = testoAnnuncio;
+		this.prezzo = prezzo;
+		this.data = data;
+	}
+	
+	
+	public Annuncio(String testoAnnuncio, Integer prezzo, Date data,
+			Set<Categoria> categorie) {
+		super();
+		this.testoAnnuncio = testoAnnuncio;
+		this.prezzo = prezzo;
+		this.data = data;
+		this.categorie = categorie;
+	}
+
 	public Annuncio(Long id, String testoAnnuncio, Integer prezzo, Date data, boolean aperto,
 			Utente utenteIserimento) {
 		super();
@@ -56,7 +87,12 @@ public class Annuncio {
 		this.prezzo = prezzo;
 		this.data = data;
 		this.aperto = aperto;
-		this.utenteIserimento = utenteIserimento;
+		this.utenteInserimento = utenteIserimento;
+	}
+	
+	public Annuncio(String testoAnnuncio) {
+		super();
+		this.testoAnnuncio = testoAnnuncio;
 	}
 	
 	public Annuncio(String testoAnnuncio, Integer prezzo, Date data, boolean aperto,
@@ -66,7 +102,7 @@ public class Annuncio {
 		this.prezzo = prezzo;
 		this.data = data;
 		this.aperto = aperto;
-		this.utenteIserimento = utenteIserimento;
+		this.utenteInserimento = utenteIserimento;
 	}
 	
 	public Annuncio(String testoAnnuncio, Integer prezzo, Date data, boolean aperto) {
@@ -75,6 +111,17 @@ public class Annuncio {
 		this.prezzo = prezzo;
 		this.data = data;
 		this.aperto = aperto;
+	}
+	
+	public Annuncio(String testoAnnuncio, Integer prezzo) {
+		super();
+		this.testoAnnuncio = testoAnnuncio;
+		this.prezzo = prezzo;
+	}
+	
+	public Annuncio(Long id) {
+		super();
+		this.id = id;
 	}
 
 	public Long getId() {
@@ -117,12 +164,21 @@ public class Annuncio {
 		this.aperto = aperto;
 	}
 
-	public Utente getUtenteIserimento() {
-		return utenteIserimento;
+	public Utente getUtenteInserimento() {
+		return utenteInserimento;
 	}
 
-	public void setUtenteIserimento(Utente utenteIserimento) {
-		this.utenteIserimento = utenteIserimento;
+	public void setUtenteInserimento(Utente utenteIserimento) {
+		this.utenteInserimento = utenteIserimento;
+	}
+	
+
+	public Set<Categoria> getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Set<Categoria> categorie) {
+		this.categorie = categorie;
 	}
 	
 	
