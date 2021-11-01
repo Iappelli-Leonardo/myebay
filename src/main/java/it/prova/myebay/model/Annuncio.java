@@ -61,6 +61,13 @@ public class Annuncio {
 		this.categorie = categorie;
 	}
 	
+	public Annuncio(String testoAnnuncio,
+			Date data) {
+		super();
+		this.testoAnnuncio = testoAnnuncio;
+		this.data = data;
+	}
+	
 	public Annuncio(String testoAnnuncio, Integer prezzo,
 			Date data) {
 		super();
@@ -68,6 +75,7 @@ public class Annuncio {
 		this.prezzo = prezzo;
 		this.data = data;
 	}
+	
 	
 	
 	public Annuncio(String testoAnnuncio, Integer prezzo, Date data,
@@ -87,6 +95,11 @@ public class Annuncio {
 		this.prezzo = prezzo;
 		this.data = data;
 		this.aperto = aperto;
+		this.utenteInserimento = utenteIserimento;
+	}
+	
+	public Annuncio(Utente utenteIserimento) {
+		super();
 		this.utenteInserimento = utenteIserimento;
 	}
 	

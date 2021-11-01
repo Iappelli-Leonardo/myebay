@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
@@ -28,13 +29,21 @@ public class UtilityForm {
 	}
 	
 
-		public static Annuncio createAnnuncioFromParams(String testoAnnuncioInputParam, String prezzoInputParam, String[] categorieInputParam) {
+		public static Annuncio createAnnuncioFromParams(String testoAnnuncioInputParam, String prezzoInputParam) {
 			Date dataCreatedParam = new Date();
-			Integer prezzoParam = Integer.parseInt(prezzoInputParam);
-			Annuncio result = new Annuncio(testoAnnuncioInputParam, prezzoParam, dataCreatedParam);
+			
+			Annuncio result = new Annuncio(testoAnnuncioInputParam, dataCreatedParam);
+			
+			if (NumberUtils.isCreatable(prezzoInputParam)) {
+				result.setPrezzo(Integer.parseInt(prezzoInputParam));
+			}
+			
 			result.setAperto(true);
 			
 			return result;
+			
+			
+	
 		}
 
 	public static boolean validateAnnuncioBean(Annuncio annuncioToBeValidated) {
@@ -42,9 +51,7 @@ public class UtilityForm {
 		if (StringUtils.isBlank(annuncioToBeValidated.getTestoAnnuncio())
 				|| annuncioToBeValidated.getPrezzo() == null 
 				|| annuncioToBeValidated.getPrezzo() < 1
-				|| annuncioToBeValidated.getData() == null
-				|| annuncioToBeValidated.getUtenteInserimento().getId() == null 
-				|| annuncioToBeValidated.getUtenteInserimento().getId() < 1) {
+				|| annuncioToBeValidated.getData() == null){
 			return false;
 		}
 		return true;

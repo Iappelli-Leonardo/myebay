@@ -31,11 +31,11 @@
           
              <c:if test="${userInfo.isUser()}"> 
            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Gestione acquisti</a>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown07"> 
             
               	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertAnnuncioServlet">Crea annuncio</a></li>
-              	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertUtenteServlet">Gestione acquisto</a></li>
+              	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertUtenteServlet">Portafoglio</a></li>
             </ul>
                 </li> 
                 </c:if>

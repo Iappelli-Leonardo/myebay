@@ -26,9 +26,10 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 		// estraggo input
 		String testoAnnuncioParam = request.getParameter("testoAnnuncio");
 		String prezzoParam = request.getParameter("prezzo");
-		String[] CategorieParam = request.getParameterValues("categoriaItem");
+		String[] CategorieParam = request.getParameterValues("categoria");
 		
-		Annuncio annuncioInstance = UtilityForm.createAnnuncioFromParams(testoAnnuncioParam, prezzoParam, CategorieParam);
+		Annuncio annuncioInstance = UtilityForm.createAnnuncioFromParams(testoAnnuncioParam, prezzoParam);
+		
 		Utente utenteExample = (Utente)httpRequest.getSession().getAttribute("userInfo");
 		
 		//ora il mio annuncio ha un testo, un prezzo, una data e un booleano tramite il metodo.
@@ -44,12 +45,13 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 			 	request.setAttribute("categorie_list_attribute",
 						MyServiceFactory.getCategoriaServiceInstance().listAllElements());
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher("/annuncio/insert.jsp").forward(request, response);
+				request.getRequestDispatcher("/annuncio/list.jsp").forward(request, response);
 				return;
 			}
 		
-			// occupiamoci delle operazioni di business
 			MyServiceFactory.getAnnuncioServiceInstance().inserisciNuovoConCategorie(annuncioInstance, CategorieParam);
+			// occupiamoci delle operazioni di business
+			
 	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,7 +63,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 		// andiamo ai risultati
 		// uso il sendRedirect con parametro per evitare il problema del double save on
 		// refresh
-		response.sendRedirect("/annuncio/list.jsp");
+		response.sendRedirect("ExecuteGestioneAnnunciServlet?operationResult=SUCCESS");
 		
 	}
 
