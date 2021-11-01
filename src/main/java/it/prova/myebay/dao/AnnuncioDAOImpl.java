@@ -66,6 +66,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO{
 
 	@Override
 	public List<Annuncio> findByExample(Annuncio example) throws Exception {
+
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
 
@@ -75,14 +76,14 @@ public class AnnuncioDAOImpl implements AnnuncioDAO{
 			whereClauses.add(" a.testoAnnuncio  like :testoAnnuncio ");
 			paramaterMap.put("testoAnnuncio", "%" + example.getTestoAnnuncio() + "%");
 		}
-		
+
 		if (example.getPrezzo() != null) {
 			whereClauses.add(" a.prezzo > :prezzo ");
 			paramaterMap.put("prezzo", example.getPrezzo());
 		}
-		if (example.getData() != null) {
-			whereClauses.add("a.data >= :data ");
-			paramaterMap.put("data", example.getData());
+		if (example.getUtenteInserimento() != null) {
+			whereClauses.add(" r.utente.id =:utente ");
+			paramaterMap.put("utente", example.getUtenteInserimento().getId());
 		}
 
 		queryBuilder.append(!whereClauses.isEmpty() ? " and " : "");
@@ -94,7 +95,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO{
 		}
 
 		return typedQuery.getResultList();
-	}
 
+	}
 
 }

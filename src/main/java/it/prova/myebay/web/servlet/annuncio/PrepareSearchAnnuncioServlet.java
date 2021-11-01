@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.prova.myebay.service.MyServiceFactory;
-
-@WebServlet("/PrepareSearchAnnuncioServlet")
+@WebServlet("/user/PrepareSearchAnnuncioServlet")
 public class PrepareSearchAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
@@ -20,18 +18,6 @@ public class PrepareSearchAnnuncioServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			// questo mi serve per la select di registi in pagina
-			request.setAttribute("annuncio_list_attribute",
-					MyServiceFactory.getAnnuncioServiceInstance().listAllElements());
-			request.setAttribute("categoria_list_attribute",
-					MyServiceFactory.getCategoriaServiceInstance().listAllElements());
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("home").forward(request, response);
-			return;
-		}
 
 		request.getRequestDispatcher("/ricerca.jsp").forward(request, response);
 	}

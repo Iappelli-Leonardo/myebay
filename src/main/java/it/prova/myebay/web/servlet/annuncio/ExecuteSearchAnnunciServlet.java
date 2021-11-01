@@ -19,23 +19,22 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
 	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String testoAnnuncioInput = request.getParameter("testoAnnuncio");
-		String prezzoInput = request.getParameter("prezzo");
-		String[] categorieParam = request.getParameterValues("categoria");
-		
-		Annuncio example = UtilityForm.createAnnuncioFromParams(testoAnnuncioInput, prezzoInput);
-		
+		String testoAnnuncioParam = request.getParameter("testo");
+		String prezzoParam = request.getParameter("prezzo");
+		//String[] categoriaInputParam = request.getParameterValues("categoriaInput");
+
 		try {
-			request.setAttribute("annuncio_list_attribute",
-					MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));
+			
+			Annuncio example = UtilityForm.createAnnuncioFromParams(testoAnnuncioParam, prezzoParam);
+			request.setAttribute("annuncio_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));
+			System.out.println(MyServiceFactory.getAnnuncioServiceInstance().findByExample(example).size());
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("ricerca.jsp").forward(request, response);
+			request.getRequestDispatcher("/home").forward(request, response);
 			return;
 		}
-		request.getRequestDispatcher("/annuncio/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/list.jsp").forward(request, response);
 	}
-
 
 }

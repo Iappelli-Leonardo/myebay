@@ -48,20 +48,6 @@
 									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire il prezzo" >
 								</div>
 							
-								<div class="col-md-6">
-									<label>Data di Pubblicazione</label>
-	                        		<input class="form-control" id="data" type="date" placeholder="dd/MM/yy" 
-	                        				title="formato : gg/mm/aaaa"  name="data"  >
-								</div>
-								
-								
-								<div class="col-md-6">
-									<label>Categorie:</label> <br>
-								<c:forEach items="${categoria_list_attribute}" var="categoriaItem">
-										<label><input type="checkbox" name="categoriaItem" value="${categoriaItem.id}">${categoriaItem.descrizione}</label><br>
-									</c:forEach>
-								</div>
-								
 								
 								<div class="col-12">
 									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
