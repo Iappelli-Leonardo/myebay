@@ -23,7 +23,8 @@ public class ExecuteVisualizzaAnnuncioServlet extends HttpServlet {
     }
 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		String idAnnuncioParam = request.getParameter("idAnnuncio");
 
 		if (!NumberUtils.isCreatable(idAnnuncioParam)) {

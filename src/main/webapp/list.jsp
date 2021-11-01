@@ -46,7 +46,7 @@
 			                         	<th>Testo</th>
 				                        <th>Prezzo</th>
 				                        <th>Data Pubblicazione</th>
-				                       <!--  <th>Proprietario</th> -->
+				                        <th>Proprietario</th>
 				                        <th>Azioni</th>
 				                    </tr>
 				                </thead>
@@ -56,6 +56,7 @@
 											<td>${annuncioItem.testoAnnuncio }</td>
 											<td>${annuncioItem.prezzo }</td>
 											<td><fmt:formatDate type = "date" value = "${annuncioItem.data }" /></td>
+											<td>${userInfo.nome}&nbsp;${userInfo.cognome}</td>
 											<td>
 												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaAnnuncioServlet?idAnnuncio=${annuncioItem.id }">Dettagli</a>
 											</td>
@@ -69,7 +70,6 @@
 			    </div>
 			<!-- end card -->
 			</div>	
-		 
 		   
 		 <!-- end container -->  
 		  </div>

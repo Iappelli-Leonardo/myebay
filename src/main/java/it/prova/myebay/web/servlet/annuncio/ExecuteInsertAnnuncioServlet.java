@@ -44,8 +44,8 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 				// questo mi serve per la select di ruoli in pagina
 			 	request.setAttribute("categorie_list_attribute",
 						MyServiceFactory.getCategoriaServiceInstance().listAllElements());
-				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher("/annuncio/list.jsp").forward(request, response);
+				request.setAttribute("errorMessage", "Bisogna inserire tutti i campi!");
+				request.getRequestDispatcher("/annuncio/insert.jsp").forward(request, response);
 				return;
 			}
 		

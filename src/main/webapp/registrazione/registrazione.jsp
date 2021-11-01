@@ -37,9 +37,7 @@
 		
 							<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 		
-		
-							<form method="post" action="${pageContext.request.contextPath}/admin/ExecuteInsertUtenteServlet" class="row g-3" >
-							
+							<form method="post" action="${pageContext.request.contextPath}/ExecuteRegistratiServlet" class="row g-3" >
 							
 								<div class="col-md-6">
 									<label>Nome <span class="text-danger">*</span></label>
@@ -66,19 +64,11 @@
 									<input type="password" class="form-control" name="conpassword" id="conpassword" placeholder="Conferma la password" value="${insert_utente_attr.password }" >
 								</div>
 								
-								<div class="col-md-6">
-								<c:forEach items="${ruoli_list_attribute}" var="ruoloItem">
-										<input type="checkbox" name="ruolo" value="${ruoloItem.id}">${ruoloItem.descrizione}<br>
-									</c:forEach>
-								</div>
-								
 							<div class="col-12">
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 							</div>
 		
 						</form>
-  
-				    
 				    
 					<!-- end card-body -->			   
 				    </div>
@@ -97,4 +87,4 @@
 </html>
 								
 			
-								
+					

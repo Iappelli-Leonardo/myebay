@@ -38,7 +38,7 @@
 		
 		    <div class="checkbox mb-3">
 		      <label>
-		        <input type="checkbox" value="remember-me"> Remember me
+		        <a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareRegistratiServlet">Registrati</a>
 		      </label>
 		    </div>
 		    <button class="w-100 btn btn-lg btn-primary" type="submit">Accedi</button>

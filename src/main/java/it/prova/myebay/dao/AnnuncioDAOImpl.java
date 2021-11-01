@@ -82,8 +82,8 @@ public class AnnuncioDAOImpl implements AnnuncioDAO{
 			paramaterMap.put("prezzo", example.getPrezzo());
 		}
 		if (example.getUtenteInserimento() != null) {
-			whereClauses.add(" r.utente.id =:utente ");
-			paramaterMap.put("utente", example.getUtenteInserimento().getId());
+			whereClauses.add(" a.utenteInserimento.id =:utenteInserimento ");
+			paramaterMap.put("utenteInserimento", example.getUtenteInserimento().getId());
 		}
 
 		queryBuilder.append(!whereClauses.isEmpty() ? " and " : "");

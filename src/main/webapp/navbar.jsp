@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse" id="navbarsExample07">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/PrepareSearchAnnuncioServlet">Home</a>
+            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/home">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -22,8 +22,10 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Annunci</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown07">
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/home">Home</a></li>
+               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertAnnuncioServlet">Crea annuncio</a></li>
               <c:if test="${!userInfo.isLogged()}">
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/login.jsp">Login</a></li>
+             
               </c:if>
             </ul> 
           </li> 
@@ -33,7 +35,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown07"> 
             
-              	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertAnnuncioServlet">Crea annuncio</a></li>
+              	
               	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareGestioneAcquistiServlet">Portafoglio</a></li>
             </ul>
                 </li> 

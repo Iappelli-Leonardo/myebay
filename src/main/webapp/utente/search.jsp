@@ -28,29 +28,26 @@
 				    </div>
 				    <div class='card-body'>
 		
-							<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
-		
-		
 							<form method="post" action="${pageContext.request.contextPath}/admin/ExecuteSearchUtenteServlet" class="row g-3" >
 							
 							
 								<div class="col-md-6">
-									<label>Nome <span class="text-danger">*</span></label>
+									<label>Nome</label>
 									<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${insert_utente_attr.nome}" >
 								</div>
 								
 								<div class="col-md-6">
-									<label>Cognome <span class="text-danger">*</span></label>
+									<label>Cognome</label>
 									<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${insert_utente_attr.cognome }" >
 								</div>
 							
 								<div class="col-md-6">
-									<label>Username <span class="text-danger">*</span></label>
+									<label>Username</label>
 									<input type="text" class="form-control" name="username" id="username" placeholder="Inserire l'username" value="${insert_utente_attr.username }" >
 								</div>
 								
 								<div class="col-md-3">
-									<label>Data Creazione<span class="text-danger">*</span></label>
+									<label>Data Creazione</label>
                         			<input class="form-control" id="dataCreazione" type="date" placeholder="dd/MM/yy"
                             			title="formato : gg/mm/aaaa"  name="dataCreazione"  value="${parsedDate}" >
 								</div>

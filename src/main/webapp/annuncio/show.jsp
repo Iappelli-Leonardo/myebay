@@ -1,4 +1,6 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -28,8 +30,13 @@
 					    <div class='card-body'>
 					    	
 					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Aperto:</dt>
-							  <dd class="col-sm-9">${show_annuncio_attr.aperto}</dd>
+							  <dt class="col-sm-3 text-right">Stato annuncio:</dt>
+							   <c:if test="${show_annuncio_attr.aperto}">
+							  <dd class="col-sm-9">aperto</dd>
+							  </c:if>
+							   <c:if test="${!show_annuncio_attr.aperto}">
+							  <dd class="col-sm-9">chiuso</dd>
+							  </c:if>
 					    	</dl>
 					    	
 					    	<dl class="row">
@@ -51,10 +58,36 @@
 					    <!-- end card body -->
 					    
 					    <div class='card-footer'>
-					        <a href="ExecuteVisualizzaAnnuncioServlet" class='btn btn-outline-secondary' style='width:80px'>
-					            <i class='fa fa-chevron-left'></i> Back
-					        </a>
-					    </div>
+					<c:choose>
+						<c:when test="${userInfo.isUser() || userInfo.isAdmin() }">
+							<c:set value="/user/ExecuteEffettuaAcquistoServlet" var="address"></c:set>
+						</c:when>
+						<c:otherwise>
+							<c:set value="${pageContext.request.contextPath}/login.jsp"
+								var="address"></c:set>
+						</c:otherwise>
+					</c:choose>
+					
+					<form method="post" action="${address}" class="row g-3"
+						novalidate="novalidate">
+						
+						<input type="hidden" name="idAnnuncio" value="${dettagli_annunci_attr.id}">
+						<input type="hidden" name="prezzoAnnuncio" value="${dettagli_annunci_attr.prezzo}">
+						
+						
+						<div class="col-12">
+						
+							<a href="ExecuteSearchAnnunciServlet"
+								class='btn btn-outline-secondary'> 
+							<i class='fa fa-chevron-left'></i> Back </a>
+							
+							<button type="submit" name="submit" value="submit" id="submit"
+								class="btn btn-outline-warning">Conferma</button>
+							
+							
+						</div>
+					</form>
+				</div>
 					<!-- end card -->
 					</div>	
 			  

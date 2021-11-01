@@ -6,7 +6,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	 	
-	   <title>Portafoglio</title>
+	   <title>Acquisti</title>
 	   
 	 </head>
 	   <body class="d-flex flex-column h-100">
