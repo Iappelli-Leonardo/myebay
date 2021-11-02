@@ -37,7 +37,6 @@
 		
 							<form method="post" action="ExecuteSearchAnnunciServlet" class="row g-3" >
 							
-							
 								<div class="col-md-6">
 									<label>Testo ricerca</label>
 									<input type="text" name="testo" id="testo" class="form-control" placeholder="Annuncio che vuoi cercare..." >
@@ -47,22 +46,16 @@
 									<label>Prezzo </label><label style="color: grey">(a partire da:)</label>
 									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire il prezzo" >
 								</div>
-							
 								
 								<div class="col-12">
 									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 								</div>
-								
 						</form>
-  
-				    
-				    
 					<!-- end card-body -->			   
 				    </div>
 				<!-- end card -->
 				</div>		
-					  
 			    
 			  <!-- end container -->  
 			  </div>

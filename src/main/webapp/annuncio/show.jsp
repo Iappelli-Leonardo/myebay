@@ -60,7 +60,7 @@
 					    <div class='card-footer'>
 					<c:choose>
 						<c:when test="${userInfo.isUser() || userInfo.isAdmin() }">
-							<c:set value="/user/ExecuteEffettuaAcquistoServlet" var="address"></c:set>
+							<c:set value="${pageContext.request.contextPath}/user/ExecuteAcquistaServlet" var="address"></c:set>
 						</c:when>
 						<c:otherwise>
 							<c:set value="${pageContext.request.contextPath}/login.jsp"
@@ -74,7 +74,6 @@
 						<input type="hidden" name="idAnnuncio" value="${dettagli_annunci_attr.id}">
 						<input type="hidden" name="prezzoAnnuncio" value="${dettagli_annunci_attr.prezzo}">
 						
-						
 						<div class="col-12">
 						
 							<a href="ExecuteSearchAnnunciServlet"
@@ -83,7 +82,6 @@
 							
 							<button type="submit" name="submit" value="submit" id="submit"
 								class="btn btn-outline-warning">Conferma</button>
-							
 							
 						</div>
 					</form>

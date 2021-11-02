@@ -44,6 +44,10 @@ public class Acquisto {
 		this.prezzo = prezzo;
 		this.utenteAcquirente = utenteAcquirente;
 	}
+	public Acquisto(Utente utenteAcquirente) {
+		super();
+		this.utenteAcquirente = utenteAcquirente;
+	}
 
 	public Acquisto(String descrizione, Date data, Integer prezzo, Utente utenteAcquirente) {
 		super();
@@ -59,7 +63,7 @@ public class Acquisto {
 		this.data = data;
 		this.prezzo = prezzo;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
