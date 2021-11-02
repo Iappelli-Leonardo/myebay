@@ -6,7 +6,7 @@
 	 <head>
 
 	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
+	 	<jsp:include page="header.jsp" />
 	 	
 	   <title>Dettaglio annuncio</title>
 	   
@@ -14,7 +14,7 @@
 	   <body class="d-flex flex-column h-100">
 	   
 	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
+	   		<jsp:include page="navbar.jsp"></jsp:include>
 	    
 			
 			<!-- Begin page content -->
@@ -56,23 +56,46 @@
 					    	
 					    </div>
 					    <!-- end card body -->
-		
-						<div class="card-footer">
+					    
+					    <div class='card-footer'>
+					<c:choose>
+						<c:when test="${userInfo.isLogged()}">
+							<c:set value="${pageContext.request.contextPath}/user/ExecuteAcquistaServlet" var="address"></c:set>
+						</c:when>
+						<c:otherwise>
+							<c:set value="PrepareLoginServlet"
+								var="address"></c:set>
+						</c:otherwise>
+					</c:choose>
+					
+					<form method="post" action="${address}" class="row g-3"
+						novalidate="novalidate">
 						
-							<a href="ExecuteSearchAnnunciServlet" class='btn btn-outline-secondary'> 
+						<input type="hidden" name="idAnnuncio" value="${show_annuncio_attr.id}">
+						<input type="hidden" name="prezzoAnnuncio" value="${show_annuncio_attr.prezzo}">
+						
+						<div class="col-12">
+						
+							<a href="ExecuteCercaAnnuncioServlet"
+								class='btn btn-outline-secondary'> 
 							<i class='fa fa-chevron-left'></i> Back </a>
 							
+							<button type="submit" name="submit" value="submit" id="submit"
+								class="btn btn-outline-warning">Compra</button>
+							
 						</div>
+					</form>
 				</div>
 					<!-- end card -->
 					</div>	
 			  
 			    
 			  <!-- end container -->  
+			  </div>
 			  
 			</main>
 			
 			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
+			<jsp:include page="footer.jsp" />
 	  </body>
 </html>

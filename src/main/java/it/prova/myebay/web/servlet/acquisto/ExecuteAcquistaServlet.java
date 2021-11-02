@@ -59,8 +59,9 @@ public class ExecuteAcquistaServlet extends HttpServlet {
 		
 		MyServiceFactory.getAcquistoServiceInstance().inserisciNuovo(acquistoInstance);
 		MyServiceFactory.getUtenteServiceInstance().aggiorna(utenteInstance);
+		MyServiceFactory.getAnnuncioServiceInstance().aggiorna(annuncioInstance);
 		
-		response.sendRedirect("ExecuteVisualizzaAcquistiServlet");
+		
 		
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -68,6 +69,7 @@ public class ExecuteAcquistaServlet extends HttpServlet {
 		request.getRequestDispatcher("/home").forward(request, response);
 		return;
 	}
+	response.sendRedirect("ExecuteVisualizzaAcquistiServlet");
 
 	}
 

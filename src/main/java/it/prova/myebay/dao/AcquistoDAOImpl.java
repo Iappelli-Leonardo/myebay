@@ -74,7 +74,7 @@ public class AcquistoDAOImpl implements AcquistoDAO{
 
 		if (StringUtils.isNotEmpty(example.getDescrizione())) {
 			whereClauses.add(" a.descrizione  like :descrizione ");
-			paramaterMap.put("titolo", "%" + example.getDescrizione() + "%");
+			paramaterMap.put("descrizione", "%" + example.getDescrizione() + "%");
 		}
 		
 		if (example.getPrezzo() != null) {

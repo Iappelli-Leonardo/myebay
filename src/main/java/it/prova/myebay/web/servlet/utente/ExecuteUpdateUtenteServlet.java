@@ -26,7 +26,6 @@ public class ExecuteUpdateUtenteServlet extends HttpServlet {
 		String usernameParam = request.getParameter("username");
 		String passwordParam = request.getParameter("password");
 		String confermaPasswordParam = request.getParameter("conpassword");
-		String[] ruoliParam = request.getParameterValues("ruolo");
 		String statoParam = request.getParameter("stato");
 		
 		
@@ -53,10 +52,6 @@ public class ExecuteUpdateUtenteServlet extends HttpServlet {
 				request.getRequestDispatcher("/utente/update.jsp").forward(request, response);
 				return;
 			}		
-			
-			for (String ruoloItem : ruoliParam) {
-				example.getRuoli().add(MyServiceFactory.getRuoloServiceInstance().caricaSingoloElemento(Long.parseLong(ruoloItem)));
-			}
 			
 			MyServiceFactory.getUtenteServiceInstance().aggiorna(example);
 			

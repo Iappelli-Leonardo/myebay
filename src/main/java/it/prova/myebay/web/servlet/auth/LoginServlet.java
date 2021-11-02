@@ -22,35 +22,36 @@ public class LoginServlet extends HttpServlet {
 			throw new UnsupportedOperationException("Invocation of doGet not allowed for this Servlet");
 		}
 
-		protected void doPost(HttpServletRequest request, HttpServletResponse response)
-				throws ServletException, IOException {
-			String loginInput = request.getParameter("inputUsername");
-			String passwordInput = request.getParameter("inputPassword");
-
-			if (StringUtils.isEmpty(loginInput) || StringUtils.isEmpty(passwordInput)) {
-				request.setAttribute("errorMessage", "E' necessario riempire tutti i campi.");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-				return;
-			}
-
-			String destinazione = null;
-
-			try {
-				Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().accedi(loginInput, passwordInput);
-				if (utenteInstance == null) {
-					request.setAttribute("errorMessage", "Utente non trovato.");
-					destinazione = "login.jsp";
-				} else {
-					request.getSession().setAttribute("userInfo", utenteInstance);
-					destinazione = "home";
+			protected void doPost(HttpServletRequest request, HttpServletResponse response)
+					throws ServletException, IOException {
+				String loginInput = request.getParameter("inputUsername");
+				String passwordInput = request.getParameter("inputPassword");
+				String urlParam = request.getParameter("url");
+				
+				if (StringUtils.isEmpty(loginInput) || StringUtils.isEmpty(passwordInput)) {
+					request.setAttribute("errorMessage", "E' necessario riempire tutti i campi.");
+					request.getRequestDispatcher("login.jsp").forward(request, response);
+					return;
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				destinazione = "login.jsp";
-				request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore.");
+
+				String destinazione = null;
+
+				try {
+					Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().accedi(loginInput, passwordInput);
+					if (utenteInstance == null) {
+						request.setAttribute("errorMessage", "Nome utente o password errati.");
+						destinazione = "login.jsp";
+					} else {
+						request.getSession().setAttribute("userInfo", utenteInstance);
+						destinazione = urlParam;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					destinazione = "login.jsp";
+					request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore.");
+					request.getRequestDispatcher(destinazione).forward(request, response);
+				}
+
+				response.sendRedirect(destinazione);
 			}
-
-			request.getRequestDispatcher(destinazione).forward(request, response);
-
-		}
 }

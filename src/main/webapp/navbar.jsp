@@ -21,7 +21,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Annunci</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown07">
-              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/home">Home</a></li>
+              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/PrepareSearchAnnuncioServlet">Visualizza annunci</a></li>
                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertAnnuncioServlet">Crea annuncio</a></li>
               <c:if test="${!userInfo.isLogged()}">
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/login.jsp">Login</a></li>
@@ -29,18 +29,6 @@
               </c:if>
             </ul> 
           </li> 
-          
-             <c:if test="${userInfo.isUser()}"> 
-           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
-            <ul class="dropdown-menu" aria-labelledby="dropdown07"> 
-            
-              	
-              	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareGestioneAcquistiServlet">Portafoglio</a></li>
-            </ul>
-                </li> 
-                </c:if>
-          
             <c:if test="${userInfo.isAdmin()}"> 
            <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Gestione utente</a>
@@ -62,7 +50,7 @@
         <c:if test="${!userInfo.isLogged()}">
       <div class="col-md-3 text-end">
         <p class="navbar-text">
-    	 <a href="${pageContext.request.contextPath}/login.jsp">Login</a></p>
+    	 <a href="${pageContext.request.contextPath}/PrepareLoginServlet">Login</a></p>
       </div>
        </c:if>
     </div>

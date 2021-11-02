@@ -28,30 +28,27 @@
 					    <div class='card-body'>
 					    	
 					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Aperto:</dt>
-							  <dd class="col-sm-9">${portafoglio_list_attribute.username}</dd>
+							  <dt class="col-sm-3 text-right">Descrizione:</dt>
+							  <dd class="col-sm-9">${acquisti_list_attribute.descrizione}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Prezzo:</dt>
-							  <dd class="col-sm-9">${show_annuncio_attr.prezzo}</dd>
+							  <dd class="col-sm-9">${acquisti_list_attribute.prezzo}</dd>
 					    	</dl>
 					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Testo:</dt>
-							  <dd class="col-sm-9">${show_annuncio_attr.testoAnnuncio}</dd>
-					    	</dl>
+					   
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Data Di pubblicazione:</dt>
-							  <dd class="col-sm-9"><fmt:formatDate type = "date" value = "${show_annuncio_attr.data}" /></dd>
+							  <dd class="col-sm-9"><fmt:formatDate type = "date" value = "${acquisti_list_attribute.data}" /></dd>
 					    	</dl>
 					    	
 					    </div>
 					    <!-- end card body -->
 					    
 					    <div class='card-footer'>
-					        <a href="ExecuteVisualizzaAnnuncioServlet" class='btn btn-outline-secondary' style='width:80px'>
+					        <a href="ExecuteVisualizzaAcquistiServlet" class='btn btn-outline-secondary' style='width:80px'>
 					            <i class='fa fa-chevron-left'></i> Back
 					        </a>
 					    </div>

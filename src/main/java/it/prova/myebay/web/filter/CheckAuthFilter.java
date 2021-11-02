@@ -19,11 +19,11 @@ import it.prova.myebay.model.Utente;
 public class CheckAuthFilter implements Filter {
 
 	private static final String HOME_PATH = "";
-	private static final String[] EXCLUDED_URLS = {""};
-	private static final String[] PROTECTED_URLS = {"/admin/"};
-
-	public CheckAuthFilter() {
-	}
+	private static final String[] EXCLUDED_URLS = {"/myebay","/ExecuteCercaAnnuncioServlet","/login.jsp",
+			"/LoginServlet","/homeServlet","/home","/ExecuteVisualizzaDettagliServlet","/PrepareLoginServlet","/assets/"};
+	private static final String[] PROTECTED_URLS = {"/user/","/annuncio/","/acquisto/","/utente/"};
+	
+	private static final String[] SUPER_PROTECTED_URLS = {"/admin/"};
 
 	public void init(FilterConfig filterConfig) throws ServletException {
 	}
@@ -54,6 +54,12 @@ public class CheckAuthFilter implements Filter {
 				httpRequest.getRequestDispatcher("/home").forward(httpRequest, httpResponse);
 				return;
 			}
+			
+			if(isPathForOnlyUser(pathAttuale) && !utenteInSession.isUser()) {
+				httpRequest.setAttribute("messaggio", "Non si è autorizzati alla navigazione richiesta");
+				httpRequest.getRequestDispatcher("/home").forward(httpRequest, httpResponse);
+				return;
+			}
 		}
 
 		chain.doFilter(request, response);
@@ -74,6 +80,15 @@ public class CheckAuthFilter implements Filter {
 	}
 	
 	private boolean isPathForOnlyAdministrators(String requestPath) {
+		for (String urlPatternItem : SUPER_PROTECTED_URLS) {
+			if (requestPath.contains(urlPatternItem)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean isPathForOnlyUser(String requestPath) {
 		for (String urlPatternItem : PROTECTED_URLS) {
 			if (requestPath.contains(urlPatternItem)) {
 				return true;

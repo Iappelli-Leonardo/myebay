@@ -9,42 +9,36 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.exceptions.ElementNotFoundException;
 import it.prova.myebay.service.MyServiceFactory;
 
-
-@WebServlet("/user/ExecuteVisualizzaAnnuncioServlet")
-public class ExecuteVisualizzaAnnuncioServlet extends HttpServlet {
+/**
+ * Servlet implementation class ExecuteDeleteAnnuncioServlet
+ */
+@WebServlet("/user/ExecuteCancellaAnnuncioServlet")
+public class ExecuteDeleteAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
-    public ExecuteVisualizzaAnnuncioServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+       
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String idAnnuncioParam = request.getParameter("idAnnuncio");
 
 		if (!NumberUtils.isCreatable(idAnnuncioParam)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore. (id)");
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
 
 		try {
-			Annuncio annuncioInstance = MyServiceFactory.getAnnuncioServiceInstance()
-					.caricaSingoloElemento(Long.parseLong(idAnnuncioParam));
-
-			if (annuncioInstance == null) {
-				request.setAttribute("errorMessage", "Elemento non trovato.");
-				request.getRequestDispatcher("ExecuteListRegistaServlet?operationResult=NOT_FOUND").forward(request,
-						response);
-				return;
-			}
-
-			request.setAttribute("show_annuncio_attr", annuncioInstance);
+			// novità rispetto al passato: abbiamo un overload di rimuovi che agisce per id
+			// in questo modo spostiamo la logica di caricamento/rimozione nel service
+			// usando la stessa finestra di transazione e non aprendo e chiudendo due volte
+			// inoltre mi torna utile quando devo fare rimozioni eager
+			MyServiceFactory.getAnnuncioServiceInstance().rimuovi(Long.parseLong(idAnnuncioParam));
+		} catch (ElementNotFoundException e) {
+			request.getRequestDispatcher("ExecuteSearchAnnunciServlet?operationResult=NOT_FOUND").forward(request, response);
+			return;
 		} catch (Exception e) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
@@ -53,7 +47,6 @@ public class ExecuteVisualizzaAnnuncioServlet extends HttpServlet {
 			return;
 		}
 
-		request.getRequestDispatcher("/annuncio/show.jsp").forward(request, response);
+		response.sendRedirect("ExecuteSearchAnnunciServlet?operationResult=SUCCESS");
 	}
-
 }

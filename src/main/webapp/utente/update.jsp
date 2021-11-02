@@ -67,12 +67,6 @@
 								</div>
 								
 								<div class="col-md-6">
-								<c:forEach items="${ruoli_list_attribute}" var="ruoloItem">
-										<input type="checkbox" name="ruolo" value="${ruoloItem.id}">${ruoloItem.descrizione}<br>
-									</c:forEach>
-								</div>
-								
-								<div class="col-md-6">
 									<label for="statoUt">Stato Utente</label>
 									<select class="form-control" id="statoUt" name="stato">
 										<option value="" selected> -- Selezionare una voce -- </option>

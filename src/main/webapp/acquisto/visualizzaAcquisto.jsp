@@ -6,7 +6,7 @@
 	 <head>
 	 
 	 	<!-- Common imports in pages -->
-	 	<jsp:include page="header.jsp" />
+	 	<jsp:include page="../header.jsp" />
 	   
 	   <title>Pagina dei Risultati</title>
 	 </head>
@@ -14,7 +14,7 @@
 	<body class="d-flex flex-column h-100">
 	 
 		<!-- Fixed navbar -->
-		<jsp:include page="navbar.jsp"></jsp:include>
+		<jsp:include page="../navbar.jsp"></jsp:include>
 	 
 	
 		<!-- Begin page content -->
@@ -36,7 +36,7 @@
 				    </div>
 				   
 				    <div class='card-body'>
-				   	
+				    
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >
 				                <thead>
@@ -44,27 +44,21 @@
 			                         	<th>Testo</th>
 				                        <th>Prezzo</th>
 				                        <th>Data Pubblicazione</th>
-				                        <th>Stato</th>
-				                        <th>Azioni</th>
+				                        <th>Proprietario</th>
+				                        <!-- <th>Azioni</th> -->
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                	<c:forEach items="${annuncio_list_attribute }" var="annuncioItem">
-				                	<c:if test="${annuncioItem.aperto}">
-				                	<c:if test="${!(userInfo.username == annuncioItem.utenteInserimento.username)}">
+				                	<c:forEach items="${acquisto_list_attr }" var="acquistoItem">
 										<tr>
-											<td>${annuncioItem.testoAnnuncio }</td>
-											<td>${annuncioItem.prezzo }</td>
-											<td><fmt:formatDate type = "date" value = "${annuncioItem.data }" /></td>
-											<c:if test="${annuncioItem.aperto}">
-											<td>aperto</td>
-											</c:if>
-											<td>
-												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaDettagliServlet?idAnnuncio=${annuncioItem.id }">Dettagli</a>
-											</td>
+											<td>${acquistoItem.descrizione }</td>
+											<td>${acquistoItem.prezzo }</td>
+											<td><fmt:formatDate type = "date" value = "${acquistoItem.data }" /></td>
+											<td>${userInfo.username}</td>
+											<%-- <td>
+												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaDettagliAcquistoServlet?idAnnuncio=${acquistoItem.id }">Dettagli</a>
+											</td> --%>
 										</tr>
-										</c:if>
-										</c:if>
 									</c:forEach>
 				                </tbody>
 				            </table>
@@ -81,7 +75,7 @@
 		</main>
 		
 		<!-- Footer -->
-		<jsp:include page="footer.jsp" />
+		<jsp:include page="../footer.jsp" />
 		
 	</body>
 </html>
